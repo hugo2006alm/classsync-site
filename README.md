@@ -13,6 +13,7 @@ Default GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
 - `assets/styles.css` — design system matching the Flutter app
 - `assets/screenshots/README.md` — exact screenshot capture list
 - `.nojekyll` — publish the static files directly without a Jekyll build
+- `.github/workflows/pages.yml` — optional GitHub Actions deployment path
 
 ## Design
 
@@ -40,13 +41,17 @@ Then open `http://localhost:8080`.
 
 ## GitHub Pages without Actions
 
-In the repository, open **Settings → Pages** and set:
+When Actions minutes are unavailable, use branch deployment. In the repository, open **Settings → Pages** and set:
 
 - **Source:** `Deploy from a branch`
 - **Branch:** `main`
 - **Folder:** `/ (root)`
 
-Then save. The repository contains `.nojekyll`, so the HTML/CSS/JS files can be served directly without a Jekyll build or a custom GitHub Actions workflow.
+Then save. The repository contains `.nojekyll`, so the HTML/CSS/JS files can be served directly without a Jekyll build or custom Actions execution.
+
+## GitHub Pages with Actions
+
+The repository also keeps `.github/workflows/pages.yml`. When you want to use the workflow again, switch **Settings → Pages → Source** back to **GitHub Actions**. The workflow deploys the repository root on pushes to `main` and can also be dispatched manually.
 
 ## Screenshots
 
