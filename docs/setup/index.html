@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Step-by-step ClassSync setup: Fireflies API key, Gemini API key, Notion token and relay connection.">
+  <title>First-run setup — ClassSync</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="site-shell nav"><a class="brand" href="../../"><span class="brand-mark">CS</span><span>ClassSync</span></a><nav class="nav-links"><a href="../../">Home</a><a href="../">Docs</a><a aria-current="page" class="keep-mobile" href="./">Setup</a></nav></div></header>
+<main class="site-shell docs-layout">
+  <aside class="docs-nav" aria-label="Documentation"><a href="../">Overview</a><a aria-current="page" href="./">First-run setup</a><a href="../self-host/">Self-host relay</a></aside>
+  <article class="docs-content">
+    <div class="eyebrow">First-run setup</div>
+    <h1>Have four things ready.</h1>
+    <p class="lede">ClassSync tests each connection as you go. For a normal hosted installation you need a Fireflies API key, a Gemini API key, a Notion connection token and the ClassSync device setup token.</p>
+
+    <div class="callout warning"><strong>Keep these values private.</strong> Never put API keys, recovery codes or webhook signing secrets in screenshots, GitHub issues or chat messages. ClassSync stores service credentials in your device's OS secure storage.</div>
+
+    <h2>1. Fireflies API key</h2>
+    <div class="step-card"><div class="step-number">1</div><div><h3>Open Developer settings</h3><p>In Fireflies, go to <strong>Settings → Developer settings</strong> under your personal settings. Copy the API key shown there. Fireflies also exposes the same flow from its Integrations page by searching for the Fireflies API.</p><div class="actions"><a class="text-link" href="https://guide.fireflies.ai/articles/3737786777-learn-about-fireflies-api" target="_blank" rel="noreferrer">Official Fireflies guide ↗</a></div></div></div>
+    <div class="screenshot-slot"><div><strong>Screenshot slot: fireflies-api-key.webp</strong>Capture Settings → Developer settings with the key itself blurred.</div></div>
+
+    <h2>2. Gemini API key</h2>
+    <div class="step-card"><div class="step-number">2</div><div><h3>Create a key in Google AI Studio</h3><p>Open the API Keys page in Google AI Studio and create a new key for the project you want ClassSync to use. New keys are authorization keys by default. Copy the value into the Gemini step.</p><div class="actions"><a class="text-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Open AI Studio API Keys ↗</a><a class="text-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noreferrer">Official key docs ↗</a></div></div></div>
+    <div class="callout"><strong>Using an older key?</strong> Google is retiring legacy standard API keys for the Gemini API. Prefer a newly created authorization key rather than carrying forward an unrestricted legacy key.</div>
+    <div class="screenshot-slot"><div><strong>Screenshot slot: gemini-api-key.webp</strong>Capture AI Studio → API Keys showing the Create API key action, with all real keys hidden.</div></div>
+
+    <h2>3. Notion template + connection token</h2>
+    <div class="step-card"><div class="step-number">3</div><div><h3>Duplicate the ClassSync template</h3><p>Duplicate the ClassSync Notion template into your own workspace. It contains the subject and summary databases that the app expects.</p><div class="actions"><a class="text-link" href="https://checker-dryer-7e3.notion.site/ClassSync-Template-3d387b0ef0908153a466c7aa2f8f7332" target="_blank" rel="noreferrer">Duplicate template ↗</a></div></div></div>
+    <div class="step-card" style="margin-top:16px"><div class="step-number">4</div><div><h3>Create an internal Notion connection</h3><p>In Notion, open <strong>Settings → Connections</strong>, enable <strong>Developer Mode</strong>, then open the personal access token area and create a new internal connection. Copy its token.</p><div class="actions"><a class="text-link" href="https://www.notion.com/help/create-integrations-with-the-notion-api" target="_blank" rel="noreferrer">Official Notion guide ↗</a></div></div></div>
+    <div class="step-card" style="margin-top:16px"><div class="step-number">5</div><div><h3>Give the connection access</h3><p>Open your copied ClassSync Template page and add the new connection to that page. ClassSync can only discover databases the connection is allowed to access.</p></div></div>
+    <div class="screenshot-slot"><div><strong>Screenshot slots: notion-token.webp + notion-page-connection.webp</strong>One image for token creation and one for adding the connection to the copied template.</div></div>
+
+    <h2>4. ClassSync relay token</h2>
+    <div class="step-card"><div class="step-number">6</div><div><h3>Use the hosted setup token or your self-hosted token</h3><p>The production relay URL is already built into the app. The <code>Device API token</code> field expects the ClassSync bootstrap setup token. This is <strong>not</strong> a Fireflies secret and it is not a value Cloudflare creates for you automatically.</p><p>If you run your own relay, you choose this secret yourself when setting <code>DEVICE_API_TOKEN</code> in Wrangler.</p><div class="actions"><a class="text-link" href="../self-host/">Self-host instructions →</a></div></div></div>
+
+    <h2>5. Finish the nine-screen wizard</h2>
+    <ol>
+      <li><strong>Welcome:</strong> review what you need, or choose <strong>Use recovery code</strong> if this is an additional device.</li>
+      <li><strong>Fireflies:</strong> paste and test the API key.</li>
+      <li><strong>Gemini:</strong> paste and test the API key; keep the recommended model unless you know why you need another.</li>
+      <li><strong>Notion:</strong> paste the token, discover the shared databases and select <code>Lista de Cadeiras</code> plus <code>Histórico de Resumos</code>.</li>
+      <li><strong>Academic:</strong> optionally connect ISEP Portal and Moodle, or skip this for later.</li>
+      <li><strong>Relay:</strong> paste the device setup token. Only change the URL for self-hosting or staging.</li>
+      <li><strong>Account:</strong> create your private ClassSync account. The app generates your personal Fireflies webhook URL and signing secret.</li>
+      <li><strong>Automation:</strong> choose background processing and notification preferences.</li>
+      <li><strong>Ready:</strong> review the tested connections and save.</li>
+    </ol>
+
+    <h2>6. Configure the Fireflies webhook</h2>
+    <p>After the Account step, return to Fireflies Developer settings and configure <strong>Webhooks V2</strong> using the exact URL and signing secret shown by ClassSync. Subscribe only to <code>meeting.transcribed</code>.</p>
+    <div class="screenshot-slot"><div><strong>Screenshot slot: fireflies-webhook-v2.webp</strong>Capture the Webhooks V2 configuration with URL and secret replaced by fake values.</div></div>
+
+    <h2>Notion database requirements</h2>
+    <ul><li><strong>Lista de Cadeiras:</strong> <code>Nome</code> (or <code>Name</code>), <code>Ano</code>, <code>Semestre</code>, <code>Status</code>.</li><li><strong>Histórico de Resumos:</strong> <code>Nome</code>, <code>Data</code>, <code>Cadeira</code>.</li><li>Only subjects whose <code>Status</code> is <code>In progress</code> are classification candidates.</li></ul>
+    <div class="callout"><strong>Recommended metadata</strong> Let ClassSync add the optional <code>Fireflies ID</code> text property. It makes duplicate reconciliation safer across devices and interrupted publishes.</div>
+
+    <h2>Moving to another device</h2>
+    <p>Choose <strong>Use recovery code</strong> on the Welcome screen before entering any API keys. A recovery code can restore the shared Fireflies, Gemini and Notion configuration if the first device has already completed setup and synced a full account snapshot. Portal and Moodle credentials remain device-local.</p>
+  </article>
+</main>
+<footer class="footer"><div class="site-shell footer-inner"><span>ClassSync docs</span><span><a href="../">Documentation overview</a></span></div></footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>
