@@ -2,6 +2,8 @@
 
 Static marketing + documentation site for ClassSync. It intentionally uses plain HTML/CSS/JS so it can be hosted for free on GitHub Pages, Cloudflare Pages or any static host without a build step.
 
+Default GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
+
 ## Structure
 
 - `index.html` — product homepage
