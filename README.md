@@ -2,7 +2,9 @@
 
 Static marketing + documentation site for ClassSync. It intentionally uses plain HTML/CSS/JS so it can be hosted for free on GitHub Pages, Cloudflare Pages or any static host without a build step.
 
-Default GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
+Primary URL: `https://classsync.hugoalmeida.tech/`
+
+Fallback GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
 
 ## Structure
 
@@ -12,6 +14,7 @@ Default GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
 - `docs/self-host/index.html` — Cloudflare Worker + D1 relay setup
 - `assets/styles.css` — design system matching the Flutter app
 - `assets/screenshots/README.md` — exact screenshot capture list
+- `CNAME` — GitHub Pages custom domain (`classsync.hugoalmeida.tech`)
 - `.nojekyll` — publish the static files directly without a Jekyll build
 - `.github/workflows/pages.yml` — optional GitHub Actions deployment path
 
@@ -38,6 +41,12 @@ python -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Custom domain
+
+GitHub Pages is configured to serve the site at `classsync.hugoalmeida.tech` through the repository `CNAME` file. DNS should expose a `CNAME` record named `classsync` pointing to `hugo2006alm.github.io`.
+
+The site keeps its internal links relative, so changing the custom domain later does not require rewriting navigation or documentation links.
 
 ## GitHub Pages without Actions
 
