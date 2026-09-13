@@ -12,7 +12,7 @@ Default GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
 - `docs/self-host/index.html` — Cloudflare Worker + D1 relay setup
 - `assets/styles.css` — design system matching the Flutter app
 - `assets/screenshots/README.md` — exact screenshot capture list
-- `.github/workflows/pages.yml` — GitHub Pages deployment
+- `.nojekyll` — publish the static files directly without a Jekyll build
 
 ## Design
 
@@ -38,10 +38,15 @@ python -m http.server 8080
 
 Then open `http://localhost:8080`.
 
-## GitHub Pages
+## GitHub Pages without Actions
 
-1. In **Settings → Pages**, choose **GitHub Actions** as the source if GitHub does not select it automatically.
-2. Push to `main`. The included workflow publishes the site.
+In the repository, open **Settings → Pages** and set:
+
+- **Source:** `Deploy from a branch`
+- **Branch:** `main`
+- **Folder:** `/ (root)`
+
+Then save. The repository contains `.nojekyll`, so the HTML/CSS/JS files can be served directly without a Jekyll build or a custom GitHub Actions workflow.
 
 ## Screenshots
 
