@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ClassSync turns completed Fireflies lectures into structured study notes in the right Notion subject, with a local-first Flutter client and a minimal Cloudflare relay.">
+  <title>ClassSync — From lecture to study notes, quietly.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-shell nav">
+      <a class="brand" href="./"><span class="brand-mark">CS</span><span>ClassSync</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#how">How it works</a>
+        <a class="keep-mobile" href="./docs/">Docs</a>
+        <a class="keep-mobile" href="./docs/setup/">Setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="site-shell hero">
+      <div>
+        <div class="eyebrow">Local-first university manager</div>
+        <h1>From lecture to study notes, quietly.</h1>
+        <p class="lede">ClassSync picks up completed Fireflies transcripts, identifies the right subject with Gemini, writes structured notes, and publishes them to your Notion study workspace — with almost no interaction.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="./docs/setup/">Set up ClassSync</a>
+          <a class="button secondary" href="./docs/">Read the docs</a>
+        </div>
+      </div>
+
+      <aside class="app-card" aria-label="ClassSync pipeline preview">
+        <span class="status">● Ready to sync</span>
+        <div class="pipeline">
+          <div class="pipeline-step"><div><strong>Fireflies</strong><br><span>Lecture transcribed</span></div><div class="pipeline-arrow">→</div></div>
+          <div class="pipeline-step"><div><strong>ClassSync</strong><br><span>Classify · summarize · review</span></div><div class="pipeline-arrow">→</div></div>
+          <div class="pipeline-step"><div><strong>Notion</strong><br><span>Study notes in the right subject</span></div><div class="pipeline-arrow">✓</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="how" class="site-shell section">
+      <div class="section-heading">
+        <div class="eyebrow">One quiet pipeline</div>
+        <h2>Your lecture finishes. ClassSync takes it from there.</h2>
+        <p>The client keeps the useful data and credentials on your device. The relay exists only to wake devices up and coordinate work safely.</p>
+      </div>
+      <div class="grid-3">
+        <article class="feature-card"><div class="icon-chip">01</div><h3>Discover</h3><p>Fireflies finishes transcription. ClassSync discovers the meeting through the relay or recovery polling and fetches the transcript directly.</p></article>
+        <article class="feature-card"><div class="icon-chip">02</div><h3>Understand</h3><p>Gemini matches the lecture against your active subjects and turns raw speech into structured Portuguese study notes.</p></article>
+        <article class="feature-card"><div class="icon-chip">03</div><h3>Publish</h3><p>The note lands in your Notion summary database, linked to the right subject and protected against duplicate publishing.</p></article>
+      </div>
+    </section>
+
+    <div class="band">
+      <section class="site-shell section">
+        <div>
+          <div class="eyebrow">Privacy by architecture</div>
+          <h2>The relay never needs your lecture.</h2>
+          <p class="lede">Transcripts, summaries and Notion content stay between your device and the services you chose. The Cloudflare relay stores identifiers, timestamps and encrypted account sync data — not lecture text.</p>
+        </div>
+        <div class="app-card">
+          <h3>What stays where</h3>
+          <div class="tag-row">
+            <span class="tag">Credentials → OS secure storage</span>
+            <span class="tag">Queue → local SQLite</span>
+            <span class="tag">Transcripts → device</span>
+            <span class="tag">Summaries → Notion</span>
+            <span class="tag">Wake-up metadata → relay</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="site-shell section">
+      <div class="section-heading">
+        <div class="eyebrow">More than lecture summaries</div>
+        <h2>A study desk that keeps working offline.</h2>
+      </div>
+      <div class="grid-3">
+        <article class="feature-card"><h3>Windows + Android</h3><p>Background processing, notifications and a local durable queue keep work moving across the platforms ClassSync targets.</p></article>
+        <article class="feature-card"><h3>Academic context</h3><p>Optional ISEP Portal and Moodle integrations bring timetable, grades, assignments and announcements into the same local-first experience.</p></article>
+        <article class="feature-card"><h3>Recovery built in</h3><p>A recovery code can restore your encrypted ClassSync setup to another device without handing over your service passwords.</p></article>
+      </div>
+    </section>
+
+    <section class="site-shell section">
+      <div class="app-card">
+        <div class="eyebrow">Ready to connect the pieces?</div>
+        <h2>Four credentials. One guided setup.</h2>
+        <p class="lede">The setup guide walks through Fireflies, Gemini, Notion and the ClassSync relay, including exactly where each key comes from.</p>
+        <div class="hero-actions"><a class="button primary" href="./docs/setup/">Open setup guide</a><a class="button secondary" href="./docs/self-host/">Self-host the relay</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="site-shell footer-inner"><span>ClassSync · <span data-year></span></span><span>Built to turn lectures into useful study notes.</span></div></footer>
+  <script src="./assets/site.js"></script>
+</body>
+</html>
