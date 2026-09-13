@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ClassSync documentation: setup, credentials, recovery and relay self-hosting.">
+  <title>Docs — ClassSync</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="site-shell nav"><a class="brand" href="../"><span class="brand-mark">CS</span><span>ClassSync</span></a><nav class="nav-links"><a href="../">Home</a><a aria-current="page" class="keep-mobile" href="./">Docs</a><a class="keep-mobile" href="./setup/">Setup</a></nav></div></header>
+<main class="site-shell docs-layout">
+  <aside class="docs-nav" aria-label="Documentation"><a aria-current="page" href="./">Overview</a><a href="./setup/">First-run setup</a><a href="./self-host/">Self-host relay</a></aside>
+  <article class="docs-content">
+    <div class="eyebrow">Documentation</div>
+    <h1>Start with the path that matches your setup.</h1>
+    <p class="lede">If you are installing ClassSync for the first time, use the guided setup. If you are running your own infrastructure, the self-host guide covers Cloudflare Worker + D1 and the bootstrap secret.</p>
+    <div class="grid-2" style="margin-top:32px">
+      <a class="doc-card" href="./setup/" style="text-decoration:none"><h3>First-run setup</h3><p>Get the Fireflies, Gemini and Notion credentials, connect the relay, then configure your private webhook.</p></a>
+      <a class="doc-card" href="./self-host/" style="text-decoration:none"><h3>Self-host the relay</h3><p>Deploy the Worker and D1 database, set the required secrets and point the app at your own URL.</p></a>
+    </div>
+    <h2>What ClassSync connects</h2>
+    <div class="credential-grid">
+      <div class="step-card"><div class="step-number">F</div><div><h3>Fireflies</h3><p>Source of completed meeting transcripts and webhook notifications.</p></div></div>
+      <div class="step-card"><div class="step-number">G</div><div><h3>Gemini</h3><p>Classifies each lecture and produces the structured study summary.</p></div></div>
+      <div class="step-card"><div class="step-number">N</div><div><h3>Notion</h3><p>Provides the subject catalogue and stores the final notes.</p></div></div>
+      <div class="step-card"><div class="step-number">R</div><div><h3>ClassSync relay</h3><p>Coordinates devices and webhook delivery without receiving transcript or summary content.</p></div></div>
+    </div>
+    <div class="callout"><strong>Already configured?</strong> Use <b>Use recovery code</b> on the welcome screen before entering API keys. A complete synced account can restore the shared ClassSync configuration to a new device.</div>
+  </article>
+</main>
+<footer class="footer"><div class="site-shell footer-inner"><span>ClassSync docs</span><span><a href="../">Back home</a></span></div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
