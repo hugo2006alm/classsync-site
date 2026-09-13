@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Self-host the ClassSync Cloudflare Worker + D1 relay.">
+  <title>Self-host relay — ClassSync</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="site-shell nav"><a class="brand" href="../../"><span class="brand-mark">CS</span><span>ClassSync</span></a><nav class="nav-links"><a href="../../">Home</a><a href="../">Docs</a><a class="keep-mobile" href="../setup/">Setup</a></nav></div></header>
+<main class="site-shell docs-layout">
+  <aside class="docs-nav" aria-label="Documentation"><a href="../">Overview</a><a href="../setup/">First-run setup</a><a aria-current="page" href="./">Self-host relay</a></aside>
+  <article class="docs-content">
+    <div class="eyebrow">Cloudflare Worker + D1</div>
+    <h1>Run your own ClassSync relay.</h1>
+    <p class="lede">The relay is deliberately small. It receives signed Fireflies webhook metadata, coordinates device claims and stores encrypted account-sync payloads — not lecture transcripts or summaries.</p>
+    <div class="callout warning"><strong>Repository access required.</strong> These commands assume you have the ClassSync source tree and are deploying the existing <code>apps/relay</code> package.</div>
+
+    <h2>1. Install and authenticate</h2>
+    <pre><code>pnpm install
+cd apps/relay
+pnpm exec wrangler login</code></pre>
+
+    <h2>2. Create the D1 database</h2>
+    <pre><code>pnpm exec wrangler d1 create classsync-relay</code></pre>
+    <p>Paste the returned <code>database_id</code> into <code>wrangler.jsonc</code>, then apply the repository migrations:</p>
+    <pre><code>pnpm run db:migrate:remote</code></pre>
+
+    <h2>3. Set the relay secrets</h2>
+    <p>You choose the values for these secrets. Wrangler stores them outside the repository.</p>
+    <pre><code>pnpm exec wrangler secret put FIREFLIES_WEBHOOK_SECRET
+pnpm exec wrangler secret put DEVICE_API_TOKEN
+pnpm exec wrangler secret put FIREBASE_SERVICE_ACCOUNT_JSON</code></pre>
+    <ul><li><code>FIREFLIES_WEBHOOK_SECRET</code>: legacy/global webhook signing secret used by the relay where applicable.</li><li><code>DEVICE_API_TOKEN</code>: the bootstrap setup code used to create a new private ClassSync account. Pick a long random secret and keep it private.</li><li><code>FIREBASE_SERVICE_ACCOUNT_JSON</code>: service account JSON used for the Android FCM fast path.</li></ul>
+
+    <h2>4. Deploy</h2>
+    <pre><code>pnpm run deploy</code></pre>
+    <p>Copy the resulting HTTPS Worker URL. In ClassSync, expand <strong>Use a different relay</strong> on the Relay step and enter that URL together with the same <code>DEVICE_API_TOKEN</code>.</p>
+
+    <h2>5. Create your account and webhook</h2>
+    <p>After relay enrollment, the Account screen creates a private account and shows an account-specific Fireflies webhook URL plus a 32-character signing secret. Configure those values in Fireflies Webhooks V2 and subscribe to <code>meeting.transcribed</code>.</p>
+    <div class="callout"><strong>One hosted relay can serve multiple people.</strong> Each person creates a different private account and receives a different webhook URL/signing secret. A recovery code is only for that person's own additional devices.</div>
+
+    <h2>Operational notes</h2>
+    <ul><li>Apply new D1 migrations before clients start relying on the corresponding relay behavior.</li><li>Changing Worker code, secrets or migrations does not change the Worker URL. Only change the app URL if you move to another Worker name, account, domain or staging deployment.</li><li>Protect public endpoints with Cloudflare rate limiting.</li><li>Do not put any of the secrets above into Git, screenshots or issue reports.</li></ul>
+  </article>
+</main>
+<footer class="footer"><div class="site-shell footer-inner"><span>ClassSync docs</span><span><a href="../setup/">Back to setup</a></span></div></footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>
