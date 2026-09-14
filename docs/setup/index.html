@@ -41,7 +41,7 @@
     <ol>
       <li><strong>Welcome:</strong> review what you need, or choose <strong>Use recovery code</strong> if this is an additional device.</li>
       <li><strong>Fireflies:</strong> paste and test the API key.</li>
-      <li><strong>Gemini:</strong> paste and test the API key; keep the recommended model unless you know why you need another.</li>
+      <li><strong>Gemini:</strong> paste and test the API key, then choose the summary model by name. Class identification uses the faster Flash-Lite default.</li>
       <li><strong>Notion:</strong> paste the token, discover the shared databases and select <code>Lista de Cadeiras</code> plus <code>Histórico de Resumos</code>.</li>
       <li><strong>Academic:</strong> optionally connect ISEP Portal and Moodle, or skip this for later.</li>
       <li><strong>Relay:</strong> paste the device setup token. Only change the URL for self-hosting or staging.</li>
@@ -58,8 +58,12 @@
     <ul><li><strong>Lista de Cadeiras:</strong> <code>Nome</code> (or <code>Name</code>), <code>Ano</code>, <code>Semestre</code>, <code>Status</code>.</li><li><strong>Histórico de Resumos:</strong> <code>Nome</code>, <code>Data</code>, <code>Cadeira</code>.</li><li>Only subjects whose <code>Status</code> is <code>In progress</code> are classification candidates.</li></ul>
     <div class="callout"><strong>Recommended metadata</strong> Let ClassSync add the optional <code>Fireflies ID</code> text property. It makes duplicate reconciliation safer across devices and interrupted publishes.</div>
 
+    <h2>Class identification and retries</h2>
+    <p>Under <strong>Settings → AI &amp; summaries</strong>, choose whether Gemini should identify classes automatically. Turning it off makes new lectures wait for your manual choice. Both the identification and summary models use named dropdowns. You can change an identified class later; ClassSync updates its owned content on the same Notion page.</p>
+    <p>After repeated Gemini failures, an open app can offer another model. Keeping the current model—or having the app closed—preserves the normal scheduled retry.</p>
+
     <h2>Moving to another device</h2>
-    <p>Choose <strong>Use recovery code</strong> on the Welcome screen before entering any API keys. A recovery code can restore the shared Fireflies, Gemini and Notion configuration if the first device has already completed setup and synced a full account snapshot. Portal and Moodle credentials remain device-local.</p>
+    <p>Choose <strong>Use recovery code</strong> on the Welcome screen before entering any API keys. A recovery code can restore the encrypted shared configuration, including Fireflies, Gemini, Notion, Portal and Moodle credentials, after the first device has completed setup and synced a full account snapshot. Processing status and Notion links sync between devices; full transcripts and generated summaries do not.</p>
   </article>
 </main>
 <footer class="footer"><div class="site-shell footer-inner"><span>ClassSync docs</span><span><a href="../">Documentation overview</a></span></div></footer>
