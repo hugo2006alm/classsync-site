@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ClassSync turns completed Fireflies lectures into structured study notes in the right Notion subject, with a local-first Flutter client and a minimal Cloudflare relay.">
+  <meta name="description" content="ClassSync is a local-first Flutter university manager and lecture pipeline for Windows and Android, with public source code, Fireflies, Gemini, Notion, ISEP Portal and Moodle integrations.">
   <title>ClassSync — From lecture to study notes, quietly.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,8 @@
         <a href="#how">How it works</a>
         <a href="#contact">Contact</a>
         <a class="keep-mobile" href="./docs/">Docs</a>
-        <a class="keep-mobile" href="./docs/setup/">Setup</a>
+        <a class="keep-mobile" href="./changelog/">Changelog</a>
+        <a class="keep-mobile" href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">GitHub ↗</a>
       </nav>
     </div>
   </header>
@@ -31,7 +32,9 @@
         <p class="lede">ClassSync picks up completed Fireflies transcripts, identifies the right subject automatically or lets you choose it, writes structured notes, and publishes them to your Notion study workspace — with almost no interaction.</p>
         <div class="hero-actions">
           <a class="button primary" href="./docs/setup/">Set up ClassSync</a>
+          <a class="button secondary" href="https://github.com/hugo2006alm/classsync/releases/latest" target="_blank" rel="noreferrer">Download latest ↗</a>
           <a class="button secondary" href="./docs/">Read the docs</a>
+          <a class="button secondary" href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">View source ↗</a>
         </div>
       </div>
 
@@ -49,7 +52,7 @@
       <div class="section-heading">
         <div class="eyebrow">One quiet pipeline</div>
         <h2>Your lecture finishes. ClassSync takes it from there.</h2>
-        <p>The client keeps the useful data and credentials on your device. The relay exists only to wake devices up and coordinate work safely.</p>
+        <p>The client keeps the useful data and credentials on your device. The relay exists only to wake devices up, coordinate processing and carry encrypted account-sync data safely.</p>
       </div>
       <div class="grid-3">
         <article class="feature-card"><div class="icon-chip">01</div><h3>Discover</h3><p>Fireflies finishes transcription. ClassSync discovers the meeting through the relay or recovery polling and fetches the transcript directly.</p></article>
@@ -85,16 +88,30 @@
       </div>
       <div class="grid-3">
         <article class="feature-card"><h3>Windows + Android</h3><p>Background processing, notifications and a local durable queue keep work moving across the platforms ClassSync targets.</p></article>
-        <article class="feature-card"><h3>Academic context</h3><p>Optional ISEP Portal and Moodle integrations bring timetable, grades, assignments and announcements into the same local-first experience.</p></article>
+        <article class="feature-card"><h3>Academic context</h3><p>Optional ISEP Portal and Moodle integrations bring timetable, exams, grades, absences, school calendar, assignments and announcements into the same local-first experience.</p></article>
         <article class="feature-card"><h3>Recovery built in</h3><p>A recovery code can restore your encrypted ClassSync setup to another device without handing over your service passwords.</p></article>
       </div>
     </section>
 
     <section class="site-shell section">
       <div class="app-card">
+        <div class="eyebrow">Public project</div>
+        <h2>Read the code, install a release, or run your own relay.</h2>
+        <p class="lede">ClassSync is now public on GitHub. The repository contains the Flutter client, Cloudflare relay, technical documentation and release tooling.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">Source on GitHub ↗</a>
+          <a class="button secondary" href="https://github.com/hugo2006alm/classsync/releases/latest" target="_blank" rel="noreferrer">Latest release ↗</a>
+          <a class="button secondary" href="./changelog/">What's new</a>
+          <a class="button secondary" href="./docs/self-host/">Self-host the relay</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-shell section">
+      <div class="app-card">
         <div class="eyebrow">Ready to connect the pieces?</div>
-        <h2>Four credentials. One guided setup.</h2>
-        <p class="lede">The setup guide walks through Fireflies, Gemini, Notion and the ClassSync relay, including exactly where each key comes from.</p>
+        <h2>Three service credentials. One guided setup.</h2>
+        <p class="lede">For the hosted relay, the setup guide walks through Fireflies, Gemini and Notion. The relay discovers its registration mode automatically, so the public hosted service needs no separate ClassSync setup token.</p>
         <div class="hero-actions"><a class="button primary" href="./docs/setup/">Open setup guide</a><a class="button secondary" href="./docs/self-host/">Self-host the relay</a></div>
       </div>
     </section>
@@ -103,19 +120,19 @@
       <div class="section-heading">
         <div class="eyebrow">Contact</div>
         <h2>Questions, feedback or something broken?</h2>
-        <p>ClassSync is created and maintained by <strong>Hugo Almeida</strong>. For setup questions, bug reports or project-related contact, email me directly or find more of my work on my personal website.</p>
+        <p>ClassSync is created and maintained by <strong>Hugo Almeida</strong>. For setup questions, bug reports or project-related contact, email me directly or use the public repository.</p>
       </div>
       <div class="app-card">
         <div class="tag-row">
           <a class="tag" href="mailto:hello@hugoalmeida.tech">hello@hugoalmeida.tech</a>
           <a class="tag" href="https://hugoalmeida.tech" target="_blank" rel="noreferrer">hugoalmeida.tech ↗</a>
-          <a class="tag" href="https://github.com/hugo2006alm" target="_blank" rel="noreferrer">GitHub · @hugo2006alm ↗</a>
+          <a class="tag" href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">ClassSync on GitHub ↗</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="site-shell footer-inner"><span>ClassSync · <span data-year></span> · Hugo Almeida</span><span><a href="mailto:hello@hugoalmeida.tech">hello@hugoalmeida.tech</a> · <a href="https://hugoalmeida.tech" target="_blank" rel="noreferrer">hugoalmeida.tech</a></span></div></footer>
+  <footer class="footer"><div class="site-shell footer-inner"><span>ClassSync · <span data-year></span> · Hugo Almeida</span><span><a href="./changelog/">Changelog</a> · <a href="https://github.com/hugo2006alm/classsync/releases/latest" target="_blank" rel="noreferrer">Latest release</a> · <a href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">Source</a> · <a href="mailto:hello@hugoalmeida.tech">hello@hugoalmeida.tech</a> · <a href="https://hugoalmeida.tech" target="_blank" rel="noreferrer">hugoalmeida.tech</a></span></div></footer>
   <script src="./assets/site.js"></script>
 </body>
 </html>

@@ -2,71 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Step-by-step ClassSync setup: Fireflies API key, Gemini API key, Notion token and relay connection.">
+  <meta name="description" content="Step-by-step ClassSync setup: install a release, connect Fireflies, Gemini and Notion, create an account, configure the webhook and recover additional devices.">
   <title>First-run setup — ClassSync</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/styles.css">
 </head>
 <body>
-<header class="site-header"><div class="site-shell nav"><a class="brand" href="../../"><span class="brand-mark">CS</span><span>ClassSync</span></a><nav class="nav-links"><a href="../../">Home</a><a href="../">Docs</a><a aria-current="page" class="keep-mobile" href="./">Setup</a></nav></div></header>
+<header class="site-header"><div class="site-shell nav"><a class="brand" href="../../"><span class="brand-mark">CS</span><span>ClassSync</span></a><nav class="nav-links"><a href="../../">Home</a><a href="../">Docs</a><a aria-current="page" class="keep-mobile" href="./">Setup</a><a class="keep-mobile" href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">GitHub ↗</a></nav></div></header>
 <main class="site-shell docs-layout">
-  <aside class="docs-nav" aria-label="Documentation"><a href="../">Overview</a><a aria-current="page" href="./">First-run setup</a><a href="../self-host/">Self-host relay</a></aside>
+  <aside class="docs-nav" aria-label="Documentation"><a href="../">Overview</a><a aria-current="page" href="./">First-run setup</a><a href="../self-host/">Self-host relay</a><a href="https://github.com/hugo2006alm/classsync/releases/latest" target="_blank" rel="noreferrer">Latest release ↗</a></aside>
   <article class="docs-content">
     <div class="eyebrow">First-run setup</div>
-    <h1>Have four things ready.</h1>
-    <p class="lede">ClassSync tests each connection as you go. For a normal hosted installation you need a Fireflies API key, a Gemini API key, a Notion connection token and the ClassSync device setup token.</p>
+    <h1>Three service credentials for the hosted setup.</h1>
+    <p class="lede">For the public hosted relay, ClassSync only needs a Fireflies API key, a Gemini API key and a Notion integration token. The app discovers the relay registration mode automatically; the hosted relay is open for account creation, so there is no separate ClassSync setup token to obtain.</p>
 
-    <div class="callout warning"><strong>Keep these values private.</strong> Never put API keys, recovery codes or webhook signing secrets in screenshots, GitHub issues or chat messages. ClassSync stores service credentials in your device's OS secure storage.</div>
+    <div class="callout warning"><strong>Keep secrets private.</strong> Never put API keys, recovery codes, invite or registration codes, or webhook signing secrets in screenshots, GitHub issues or chat messages. ClassSync keeps service credentials in OS secure storage.</div>
+
+    <h2>0. Install ClassSync</h2>
+    <div class="step-card"><div class="step-number">0</div><div><h3>Use a published GitHub release</h3><p>Download the Windows installer or Android APK from the public ClassSync releases page. Published releases also include SHA-256 checksums.</p><div class="actions"><a class="text-link" href="https://github.com/hugo2006alm/classsync/releases/latest" target="_blank" rel="noreferrer">Latest ClassSync release ↗</a><a class="text-link" href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">Source code ↗</a></div></div></div>
+    <div class="callout"><strong>Updating instead?</strong> Install the newer build over the existing installation. Do not uninstall ClassSync or clear app storage first, otherwise local state and secure-storage configuration can be lost.</div>
 
     <h2>1. Fireflies API key</h2>
-    <div class="step-card"><div class="step-number">1</div><div><h3>Open Developer settings</h3><p>In Fireflies, go to <strong>Settings → Developer settings</strong> under your personal settings. Copy the API key shown there. Fireflies also exposes the same flow from its Integrations page by searching for the Fireflies API.</p><div class="actions"><a class="text-link" href="https://guide.fireflies.ai/articles/3737786777-learn-about-fireflies-api" target="_blank" rel="noreferrer">Official Fireflies guide ↗</a></div></div></div>
-    <div class="screenshot-slot"><div><strong>Screenshot slot: fireflies-api-key.webp</strong>Capture Settings → Developer settings with the key itself blurred.</div></div>
+    <div class="step-card"><div class="step-number">1</div><div><h3>Open Developer settings</h3><p>In Fireflies, open <strong>Settings → Personal → Developer settings</strong> and copy your API key.</p><div class="actions"><a class="text-link" href="https://guide.fireflies.ai/articles/3737786777-learn-about-fireflies-api" target="_blank" rel="noreferrer">Official Fireflies guide ↗</a></div></div></div>
+    <div class="screenshot-slot"><div><strong>Screenshot slot: fireflies-api-key.webp</strong>Capture Developer settings with the key itself blurred.</div></div>
 
     <h2>2. Gemini API key</h2>
-    <div class="step-card"><div class="step-number">2</div><div><h3>Create a key in Google AI Studio</h3><p>Open the API Keys page in Google AI Studio and create a new key for the project you want ClassSync to use. New keys are authorization keys by default. Copy the value into the Gemini step.</p><div class="actions"><a class="text-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Open AI Studio API Keys ↗</a><a class="text-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noreferrer">Official key docs ↗</a></div></div></div>
-    <div class="callout"><strong>Using an older key?</strong> Google is retiring legacy standard API keys for the Gemini API. Prefer a newly created authorization key rather than carrying forward an unrestricted legacy key.</div>
-    <div class="screenshot-slot"><div><strong>Screenshot slot: gemini-api-key.webp</strong>Capture AI Studio → API Keys showing the Create API key action, with all real keys hidden.</div></div>
+    <div class="step-card"><div class="step-number">2</div><div><h3>Create a key in Google AI Studio</h3><p>Create or copy a Gemini API key for the project you want ClassSync to use, then keep it ready for the Gemini step.</p><div class="actions"><a class="text-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Open AI Studio API Keys ↗</a><a class="text-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noreferrer">Official key docs ↗</a></div></div></div>
+    <div class="screenshot-slot"><div><strong>Screenshot slot: gemini-api-key.webp</strong>Capture AI Studio → API Keys with all real keys hidden.</div></div>
 
-    <h2>3. Notion template + connection token</h2>
-    <div class="step-card"><div class="step-number">3</div><div><h3>Duplicate the ClassSync template</h3><p>Duplicate the ClassSync Notion template into your own workspace. It contains the subject and summary databases that the app expects.</p><div class="actions"><a class="text-link" href="https://checker-dryer-7e3.notion.site/ClassSync-Template-3d387b0ef0908153a466c7aa2f8f7332" target="_blank" rel="noreferrer">Duplicate template ↗</a></div></div></div>
-    <div class="step-card" style="margin-top:16px"><div class="step-number">4</div><div><h3>Create an internal Notion connection</h3><p>In Notion, open <strong>Settings → Connections</strong>, enable <strong>Developer Mode</strong>, then open the personal access token area and create a new internal connection. Copy its token.</p><div class="actions"><a class="text-link" href="https://www.notion.com/help/create-integrations-with-the-notion-api" target="_blank" rel="noreferrer">Official Notion guide ↗</a></div></div></div>
-    <div class="step-card" style="margin-top:16px"><div class="step-number">5</div><div><h3>Give the connection access</h3><p>Open your copied ClassSync Template page and add the new connection to that page. ClassSync can only discover databases the connection is allowed to access.</p></div></div>
-    <div class="screenshot-slot"><div><strong>Screenshot slots: notion-token.webp + notion-page-connection.webp</strong>One image for token creation and one for adding the connection to the copied template.</div></div>
+    <h2>3. Notion template + integration token</h2>
+    <div class="step-card"><div class="step-number">3</div><div><h3>Duplicate the ClassSync template</h3><p>Duplicate the ClassSync Notion template into your own workspace. It contains the subject and summary databases expected by the app.</p><div class="actions"><a class="text-link" href="https://checker-dryer-7e3.notion.site/ClassSync-Template-3d387b0ef0908153a466c7aa2f8f7332" target="_blank" rel="noreferrer">Duplicate template ↗</a></div></div></div>
+    <div class="step-card" style="margin-top:16px"><div class="step-number">4</div><div><h3>Create an internal Notion integration</h3><p>Create an internal Notion integration, copy its token, then share the copied ClassSync template page/databases with that integration. ClassSync can only discover databases the integration is allowed to access.</p><div class="actions"><a class="text-link" href="https://www.notion.com/help/create-integrations-with-the-notion-api" target="_blank" rel="noreferrer">Official Notion guide ↗</a></div></div></div>
+    <div class="screenshot-slot"><div><strong>Screenshot slots: notion-token.webp + notion-page-connection.webp</strong>Capture token creation and sharing the copied template, with private values hidden.</div></div>
 
-    <h2>4. ClassSync relay token</h2>
-    <div class="step-card"><div class="step-number">6</div><div><h3>Use the hosted setup token or your self-hosted token</h3><p>The production relay URL is already built into the app. The <code>Device API token</code> field expects the ClassSync bootstrap setup token. This is <strong>not</strong> a Fireflies secret and it is not a value Cloudflare creates for you automatically.</p><p>If you run your own relay, you choose this secret yourself when setting <code>DEVICE_API_TOKEN</code> in Wrangler.</p><div class="actions"><a class="text-link" href="../self-host/">Self-host instructions →</a></div></div></div>
-
-    <h2>5. Finish the nine-screen wizard</h2>
+    <h2>4. Finish the nine-screen wizard</h2>
     <ol>
-      <li><strong>Welcome:</strong> review what you need, or choose <strong>Use recovery code</strong> if this is an additional device.</li>
-      <li><strong>Fireflies:</strong> paste and test the API key.</li>
-      <li><strong>Gemini:</strong> paste and test the API key, then choose the summary model by name. Class identification uses the faster Flash-Lite default.</li>
+      <li><strong>Welcome:</strong> review what you need, or choose <strong>Use recovery code</strong> if this is an additional device for an existing account.</li>
+      <li><strong>Relay:</strong> keep the hosted relay selected for the normal setup. ClassSync detects whether a relay uses <code>open</code>, <code>invite</code> or <code>token</code> registration. Only custom relays may ask for a code.</li>
+      <li><strong>Account:</strong> enter the owner's display name, create the private ClassSync account and save the recovery code.</li>
+      <li><strong>Fireflies:</strong> paste and test the API key. ClassSync also shows the account-specific Webhooks V2 URL and signing secret.</li>
+      <li><strong>Gemini:</strong> paste and test the API key and choose the summary model.</li>
       <li><strong>Notion:</strong> paste the token, discover the shared databases and select <code>Lista de Cadeiras</code> plus <code>Histórico de Resumos</code>.</li>
-      <li><strong>Academic:</strong> optionally connect ISEP Portal and Moodle, or skip this for later.</li>
-      <li><strong>Relay:</strong> paste the device setup token. Only change the URL for self-hosting or staging.</li>
-      <li><strong>Account:</strong> create your private ClassSync account. The app generates your personal Fireflies webhook URL and signing secret.</li>
-      <li><strong>Automation:</strong> choose background processing and notification preferences.</li>
-      <li><strong>Ready:</strong> review the tested connections and save.</li>
+      <li><strong>Academic:</strong> leave ISEP Portal and Moodle off unless you use them. The lecture summary pipeline, local tasks, and manual evaluations remain available.</li>
+      <li><strong>Automation:</strong> choose notification and platform background-processing preferences.</li>
+      <li><strong>Ready:</strong> review the verified connections before the first sync.</li>
     </ol>
 
-    <h2>6. Configure the Fireflies webhook</h2>
-    <p>After the Account step, return to Fireflies Developer settings and configure <strong>Webhooks V2</strong> using the exact URL and signing secret shown by ClassSync. Subscribe only to <code>meeting.transcribed</code>.</p>
+    <h2>5. Configure the Fireflies webhook</h2>
+    <p>Use the exact account-specific URL and signing secret shown by ClassSync in Fireflies <strong>Webhooks V2</strong>. Subscribe only to <code>meeting.transcribed</code>. Each ClassSync account gets its own webhook values.</p>
     <div class="screenshot-slot"><div><strong>Screenshot slot: fireflies-webhook-v2.webp</strong>Capture the Webhooks V2 configuration with URL and secret replaced by fake values.</div></div>
+
+    <h2>Optional academic connections</h2>
+    <p>ISEP Portal and Moodle are off by default for new accounts. Turn them on in the Academic step, or later under <strong>Settings → Connections → Use ISEP Portal and Moodle</strong>. Turning them off hides imported sections and data and stops refreshes; local tasks and manual evaluations stay available. Existing accounts keep their enabled setting after upgrading. Portal data stays in the local offline cache and does not pass through the ClassSync relay. Moodle stores the exchanged app token rather than the submitted password.</p>
 
     <h2>Notion database requirements</h2>
     <ul><li><strong>Lista de Cadeiras:</strong> <code>Nome</code> (or <code>Name</code>), <code>Ano</code>, <code>Semestre</code>, <code>Status</code>.</li><li><strong>Histórico de Resumos:</strong> <code>Nome</code>, <code>Data</code>, <code>Cadeira</code>.</li><li>Only subjects whose <code>Status</code> is <code>In progress</code> are classification candidates.</li></ul>
-    <div class="callout"><strong>Recommended metadata</strong> Let ClassSync add the optional <code>Fireflies ID</code> text property. It makes duplicate reconciliation safer across devices and interrupted publishes.</div>
+    <div class="callout"><strong>Recommended metadata.</strong> Let ClassSync add the optional <code>Fireflies ID</code> rich-text property. It makes reconciliation safer across devices and interrupted publishes.</div>
 
     <h2>Class identification and retries</h2>
-    <p>Under <strong>Settings → AI &amp; summaries</strong>, choose whether Gemini should identify classes automatically. Turning it off makes new lectures wait for your manual choice. Both the identification and summary models use named dropdowns. You can change an identified class later; ClassSync updates its owned content on the same Notion page.</p>
-    <p>After repeated Gemini failures, an open app can offer another model. Keeping the current model—or having the app closed—preserves the normal scheduled retry.</p>
+    <p>Under <strong>Settings → AI &amp; summaries</strong>, choose whether Gemini should identify classes automatically. Turning it off makes new lectures wait for your manual choice. You can change an identified class later; ClassSync updates its owned content on the same Notion page instead of creating a duplicate.</p>
 
     <h2>Moving to another device</h2>
-    <p>Choose <strong>Use recovery code</strong> on the Welcome screen before entering any API keys. A recovery code can restore the encrypted shared configuration, including Fireflies, Gemini, Notion, Portal and Moodle credentials, after the first device has completed setup and synced a full account snapshot. Processing status and Notion links sync between devices; full transcripts and generated summaries do not.</p>
+    <p>Choose <strong>Use recovery code</strong> on Welcome. Recovery restores the encrypted shared configuration for that account, including configured Fireflies sources, Gemini/Notion keys and academic credentials when present in the synced snapshot. It does not require an invite or registration token.</p>
+    <p>For an account on a self-hosted relay, expand <strong>Custom relay</strong> and enter the existing relay URL before recovering. Full transcripts and generated summaries are not copied between devices; bounded status and Notion-link metadata are.</p>
+
+    <h2>App updates</h2>
+    <p>The current source includes public GitHub-release update checks. On releases that contain this feature, ClassSync checks when the app opens and exposes <strong>Settings → App updates &amp; widget</strong>. Public release checks normally require no GitHub token. If GitHub rate-limits a device, you can optionally provide a fine-grained token with only <strong>Contents: read</strong>; it stays in OS secure storage on that device.</p>
+    <p>When you accept an available update, ClassSync downloads the matching installer or APK, verifies the published SHA-256 checksum and starts the platform installer. Android still requires normal system approval for sideloaded APK updates.</p>
   </article>
 </main>
-<footer class="footer"><div class="site-shell footer-inner"><span>ClassSync docs</span><span><a href="../">Documentation overview</a></span></div></footer>
+<footer class="footer"><div class="site-shell footer-inner"><span>ClassSync docs</span><span><a href="https://github.com/hugo2006alm/classsync" target="_blank" rel="noreferrer">Source</a> · <a href="../">Documentation overview</a></span></div></footer>
 <script src="../../assets/site.js"></script>
 </body>
 </html>
