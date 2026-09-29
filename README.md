@@ -18,6 +18,7 @@ The website repository only contains the static site. The Flutter client, Cloudf
 - `docs/index.html` — documentation hub
 - `docs/setup/index.html` — first-run setup and credential guide
 - `docs/self-host/index.html` — Cloudflare Worker + D1 relay setup
+- `changelog/index.html` — user-facing changes and release links
 - `assets/styles.css` — design system matching the Flutter app
 - `assets/screenshots/README.md` — exact screenshot capture list
 - `CNAME` — GitHub Pages custom domain (`classsync.hugoalmeida.tech`)

@@ -44,7 +44,7 @@
       <li><strong>Fireflies:</strong> paste and test the API key. ClassSync also shows the account-specific Webhooks V2 URL and signing secret.</li>
       <li><strong>Gemini:</strong> paste and test the API key and choose the summary model.</li>
       <li><strong>Notion:</strong> paste the token, discover the shared databases and select <code>Lista de Cadeiras</code> plus <code>Histórico de Resumos</code>.</li>
-      <li><strong>Academic:</strong> optionally connect ISEP Portal and Moodle, or skip them for later.</li>
+      <li><strong>Academic:</strong> leave ISEP Portal and Moodle off unless you use them. The lecture summary pipeline, local tasks, and manual evaluations remain available.</li>
       <li><strong>Automation:</strong> choose notification and platform background-processing preferences.</li>
       <li><strong>Ready:</strong> review the verified connections before the first sync.</li>
     </ol>
@@ -54,7 +54,7 @@
     <div class="screenshot-slot"><div><strong>Screenshot slot: fireflies-webhook-v2.webp</strong>Capture the Webhooks V2 configuration with URL and secret replaced by fake values.</div></div>
 
     <h2>Optional academic connections</h2>
-    <p>The Academic step can connect ISEP Portal and Moodle, or you can configure them later under <strong>Academic → Connections</strong>. Portal data stays in the local offline cache and does not pass through the ClassSync relay. Moodle stores the exchanged app token rather than the submitted password.</p>
+    <p>ISEP Portal and Moodle are off by default for new accounts. Turn them on in the Academic step, or later under <strong>Settings → Connections → Use ISEP Portal and Moodle</strong>. Turning them off hides imported sections and data and stops refreshes; local tasks and manual evaluations stay available. Existing accounts keep their enabled setting after upgrading. Portal data stays in the local offline cache and does not pass through the ClassSync relay. Moodle stores the exchanged app token rather than the submitted password.</p>
 
     <h2>Notion database requirements</h2>
     <ul><li><strong>Lista de Cadeiras:</strong> <code>Nome</code> (or <code>Name</code>), <code>Ano</code>, <code>Semestre</code>, <code>Status</code>.</li><li><strong>Histórico de Resumos:</strong> <code>Nome</code>, <code>Data</code>, <code>Cadeira</code>.</li><li>Only subjects whose <code>Status</code> is <code>In progress</code> are classification candidates.</li></ul>
