@@ -6,6 +6,12 @@ Primary URL: `https://classsync.hugoalmeida.tech/`
 
 Fallback GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
 
+Product source: `https://github.com/hugo2006alm/classsync`
+
+Public releases: `https://github.com/hugo2006alm/classsync/releases`
+
+The website repository only contains the static site. The Flutter client, Cloudflare relay, migrations, tests and technical documentation live in the main public ClassSync repository linked above.
+
 ## Structure
 
 - `index.html` — product homepage
