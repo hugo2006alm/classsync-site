@@ -8,6 +8,10 @@ Fallback GitHub Pages URL: `https://hugo2006alm.github.io/classsync-site/`
 
 Product source: `https://github.com/hugo2006alm/classsync`
 
+License: [MIT](LICENSE), copyright 2026 Hugo Almeida. Copies and substantial
+portions must retain the copyright and license notice. See [CONTRIBUTING.md](CONTRIBUTING.md)
+for contributions and [SECURITY.md](SECURITY.md) for private security reports.
+
 Public releases: `https://github.com/hugo2006alm/classsync/releases`
 
 The website repository only contains the static site. The Flutter client, Cloudflare relay, migrations, tests and technical documentation live in the main public ClassSync repository linked above.
@@ -24,6 +28,7 @@ The website repository only contains the static site. The Flutter client, Cloudf
 - `CNAME` — GitHub Pages custom domain (`classsync.hugoalmeida.tech`)
 - `.nojekyll` — publish the static files directly without a Jekyll build
 - `.github/workflows/pages.yml` — optional GitHub Actions deployment path
+- `.github/workflows/site-check.yml` — local-link and JavaScript checks for pull requests
 
 ## Design
 
